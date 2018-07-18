@@ -7,7 +7,7 @@ class Tx:
     Transaction class
     """
 
-    def __init__(self, type, sender, recipient, amount, message, merkle_tree_map, timestamp=time.time()):
+    def __init__(self, type, sender, recipient, amount, message, timestamp=time.time()):
         """
         Initialize a transaction object
         :param type:
@@ -15,7 +15,6 @@ class Tx:
         :param recipient:
         :param amount:
         :param message:
-        :param merkle_tree_map: a binary map that indicate the position of this transaction in its merkle tree.
         """
 
         # Todo: finalize the transaction format
@@ -25,7 +24,6 @@ class Tx:
         self.recipient = recipient
         self.amount = amount
         self.message = message
-        self.merkle_tree_map = merkle_tree_map
         self.timestamp = timestamp
 
     @property

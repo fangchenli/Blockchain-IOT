@@ -77,7 +77,7 @@ def export_public_key_rsa(public_key):
     return public_key.exportKey().decode('utf-8')
 
 
-def inport_public_key_rsa(public_key):
+def import_public_key_rsa(public_key):
     """
     Import a public key in string format, convert it to key object
     :param public_key: a string public key

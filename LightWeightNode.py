@@ -27,7 +27,7 @@ class LightWeightNode:
         self.tx_db = TxDB()
 
     @staticmethod
-    def inport_keys(s):
+    def import_keys(s):
         """
         Import keys from string.
         :param s: a json style string created by export_keys() method
@@ -35,7 +35,7 @@ class LightWeightNode:
         """
         j = loads(s)
         public_key_ecc = import_public_key_ecc(j["public_key_ecc"])
-        public_key_rsa = inport_public_key_rsa(j["public_key_rsa"])
+        public_key_rsa = import_public_key_rsa(j["public_key_rsa"])
         return public_key_ecc, public_key_rsa
 
     @staticmethod
@@ -63,7 +63,7 @@ class LightWeightNode:
         :return:
         """
         # Todo: implement, connect to full nodes and other light weight nodes
-        return [], []
+        return [], [], self
 
     def decrypt_message(self, message):
         """
@@ -102,7 +102,7 @@ def test():
     print(exp_s)
 
     # test import
-    p1, p2 = lwn.inport_keys(exp_s)
+    p1, p2 = lwn.import_keys(exp_s)
     print(p1.to_string().hex())
     print(p2.exportKey())
 

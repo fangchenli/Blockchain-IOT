@@ -46,7 +46,7 @@ class LightWeightNode:
         :param message: message in string format
         :return: an rsa encrypted message
         """
-        return PKCS1_OAEP.new(public_key_recipient).encrypt(message.encode('utf-8'))
+        return PKCS1_OAEP.new(public_key_recipient).encrypt(message.encode('utf-8')).hex()
 
     def export_keys(self):
         """
@@ -71,7 +71,7 @@ class LightWeightNode:
         :param message: an rsa encrypted message
         :return: the decrypted message
         """
-        return PKCS1_OAEP.new(self.private_key_rsa).decrypt(message)
+        return PKCS1_OAEP.new(self.private_key_rsa).decrypt(bytes.fromhex(message)).decode('utf-8')
 
     def export_public_key_ecc(self):
         """

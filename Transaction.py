@@ -6,7 +6,6 @@ class Tx:
     """
     Transaction class
     """
-
     def __init__(self, type, sender, recipient, amount, message, timestamp=time.time()):
         """
         Initialize a transaction object
@@ -52,7 +51,10 @@ def tx_from_json(j):
     :param j: a transaction in json
     :return:
     """
-    return Tx(j["type"], j["sender"], j["recipient"], j["amount"], j["message"], j["merkle_tree_map"], j["timestamp"])
+    return Tx(j["type"], j["sender"], j["recipient"], j["amount"], j["message"], j["timestamp"])
+
+
+"---------------------------------------------------------------------------------------------------------------------"
 
 
 class TxDB:
@@ -122,7 +124,7 @@ class TxDB:
 
 # test cases
 def test():
-    t1 = Tx('good', '1', '2', 100, 'hello world', [1, 2, 3])
+    t1 = Tx('good', '1', '2', 100, 'hello world')
 
     print(t1.to_string)
 
@@ -141,10 +143,6 @@ def test():
     t3 = tx_from_string(t1.to_string)
 
     print(t3.to_string)
-
-    txdb = TxDB()
-
-    print(txdb.in_uc[0].to_string)
 
     # Todo: test transaction database
 

@@ -16,7 +16,7 @@ message = 'hello world.'
 # encrypt message
 message_encrypted = cipher_sender.encrypt(message.encode('utf-8'))
 
-print(message_encrypted)
+print(message_encrypted.hex())
 
 # -------------------------------recipient-------------------------------
 # generate cipher from private key
@@ -27,4 +27,11 @@ message_decrypted = cipher_recipient.decrypt(message_encrypted)
 
 print(message_decrypted)
 
+exp_public_key = public_key.exportKey()
 
+print(type(exp_public_key.decode('utf-8')))
+print(exp_public_key.decode('utf-8'))
+
+inp_public_key = RSA.importKey(exp_public_key)
+
+print(inp_public_key.has_private())

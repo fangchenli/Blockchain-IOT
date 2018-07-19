@@ -55,9 +55,6 @@ class LightWeightNode:
         """
         keys = dict([('public_key_ecc', self.export_public_key_ecc()),
                      ('public_key_rsa', self.export_public_key_rsa())])
-
-        print(type(self.export_public_key_ecc()))
-        print(type(self.export_public_key_rsa()))
         return dumps(keys)
 
     def find_peers(self):

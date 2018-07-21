@@ -6,23 +6,21 @@ class Tx:
     """
     Transaction class
     """
-    def __init__(self, type, sender, recipient, amount, message, timestamp=time.time()):
+    def __init__(self, message, sender, recipient, content, timestamp=time.time()):
         """
         Initialize a transaction object
-        :param type:
+        :param message:
         :param sender:
         :param recipient:
-        :param amount:
-        :param message:
+        :param content:
         """
 
         # Todo: finalize the transaction format
 
-        self.type = type
+        self.message = message
         self.sender = sender
         self.recipient = recipient
-        self.amount = amount
-        self.message = message
+        self.content = content
         self.timestamp = timestamp
 
     @property
@@ -51,7 +49,7 @@ def tx_from_json(j):
     :param j: a transaction in json
     :return:
     """
-    return Tx(j["type"], j["sender"], j["recipient"], j["amount"], j["message"], j["timestamp"])
+    return Tx(j["message"], j["sender"], j["recipient"], j["content"], j["timestamp"])
 
 
 "---------------------------------------------------------------------------------------------------------------------"
@@ -124,7 +122,7 @@ class TxDB:
 
 # test cases
 def test():
-    t1 = Tx('good', '1', '2', 100, 'hello world')
+    t1 = Tx('connect', '1', '2', 'hello world')
 
     print(t1.to_string)
 
@@ -133,8 +131,6 @@ def test():
     j1 = loads(t1.to_string)
 
     print(type(j1))
-
-    print(j1["type"])
 
     t2 = tx_from_json(j1)
 
